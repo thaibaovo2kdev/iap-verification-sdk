@@ -4,7 +4,12 @@
   "description": "SDK for verifying in-app purchases from Google Play and Apple App Store",
   "main": "src/index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "prepublishOnly": "npm version patch",
+    "publish": "npm publish",
+    "release:patch": "npm version patch && npm publish",
+    "release:minor": "npm version minor && npm publish",
+    "release:major": "npm version major && npm publish"
   },
   "keywords": [
     "iap",

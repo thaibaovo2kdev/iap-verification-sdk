@@ -154,90 +154,23 @@ The SDK supports both new and old platform naming conventions for backward compa
 
 We recommend using the new naming convention (`'google'` and `'apple'`), but the SDK will automatically normalize old platform names.
 
-## Integration with Existing Code
+## Publishing and Versioning
 
-To integrate with your existing verification system:
+This package includes scripts to help with publishing and versioning:
 
-```javascript
-const iapVerifier = require('iap-verification-sdk');
-const fs = require('fs');
-const path = require('path');
+```bash
+# Publish with automatic patch version increment
+npm run release:patch
 
-// Existing verification function
-async function verifyPurchase(req) {
-  const { packageName, productId, purchaseToken, platform, transactionId } = req.body;
-  const userId = req.userId;
-  
-  try {
-    // Create configuration from your service account file and private key
-    const config = {
-      environment: process.env.NODE_ENV === 'production' ? 'production' : 'sandbox',
-    };
-    
-    // Add Google configuration if needed
-    if (platform === 'google' || platform === 'android') {
-      const serviceAccountPath = path.join(__dirname, '../../../iap-config.json');
-      const serviceAccount = JSON.parse(fs.readFileSync(serviceAccountPath, 'utf8'));
-      config.google = { serviceAccount };
-    }
-    
-    // Add Apple configuration if needed
-    if (platform === 'apple' || platform === 'ios') {
-      const privateKeyPath = path.join(__dirname, '../../../private_key.p8');
-      const privateKey = fs.readFileSync(privateKeyPath, 'utf8');
-      config.apple = {
-        issuerId: process.env.IOS_USER_ID,
-        keyId: process.env.IOS_KEY,
-        bundleId: process.env.BID_APPLE,
-        privateKey,
-        sharedSecret: process.env.SHARE_SECRET
-      };
-    }
-    
-    // Create a verifier instance
-    const verifier = iapVerifier.create(config);
-    
-    // Verify the purchase
-    const verificationResult = await verifier.verify({
-      platform,
-      packageName,
-      productId,
-      purchaseToken,
-      transactionId
-    });
-    
-    // Process verification result...
-  } catch (error) {
-    console.error('Error verifying purchase:', error);
-    // Handle error...
-  }
-}
+# Publish with automatic minor version increment
+npm run release:minor
+
+# Publish with automatic major version increment
+npm run release:major
+
+# Alternative: use the publish.js script
+node publish.js patch   # or minor, major
 ```
-
-## Error Handling
-
-The SDK provides detailed error information in the response:
-
-```javascript
-{
-  isSuccess: false,
-  statusCode: 400, // or 500 for server errors
-  message: 'ERROR_MESSAGE',
-  result: {
-    status: 'FAILED',
-    message: 'Detailed error message'
-  }
-}
-```
-
-## Status Codes
-
-The SDK uses the following status codes:
-
-- `COMPLETED` - Purchase is completed and consumed
-- `PENDING` - Purchase is completed but not yet consumed
-- `WAITING` - Purchase verification is in progress
-- `FAILED` - Purchase verification failed
 
 ## License
 
