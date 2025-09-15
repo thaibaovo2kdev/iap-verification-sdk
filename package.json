@@ -1,0 +1,36 @@
+{
+  "name": "@thaibaovo2kdev/iap-verification-sdk",
+  "version": "1.0.0",
+  "description": "SDK for verifying in-app purchases from Google Play and Apple App Store",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [
+    "iap",
+    "in-app-purchase",
+    "google-play",
+    "app-store",
+    "verification"
+  ],
+  "author": "Thai Bao Vo <thaibaovo2kdev@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thaibaovo2kdev/iap-verification-sdk.git"
+  },
+  "bugs": {
+    "url": "https://github.com/thaibaovo2kdev/iap-verification-sdk/issues"
+  },
+  "homepage": "https://github.com/thaibaovo2kdev/iap-verification-sdk#readme",
+  "dependencies": {
+    "axios": "^1.7.3",
+    "googleapis": "^144.0.0",
+    "@apple/app-store-server-library": "^1.6.0",
+    "jsonwebtoken": "^8.5.1",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "jest": "^29.5.0"
+  }
+}
