@@ -1,5 +1,5 @@
 {
-  "name": "@thaibaovo2kdev/iap-verification-sdk",
+  "name": "iap-verification-sdk",
   "version": "1.0.0",
   "description": "SDK for verifying in-app purchases from Google Play and Apple App Store",
   "main": "src/index.js",
