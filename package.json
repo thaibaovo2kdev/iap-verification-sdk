@@ -1,6 +1,6 @@
 {
   "name": "iap-verification-sdk",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "SDK for verifying in-app purchases from Google Play and Apple App Store",
   "main": "src/index.js",
   "scripts": {
