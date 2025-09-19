@@ -55,7 +55,8 @@ async function verifyGooglePurchase(options) {
       orderId: response.data.orderId,
       transactionId: response.data.orderId,
       purchaseDate: parseInt(response.data.purchaseTimeMillis),
-      environment: config.environment === 'production' ? 'Production' : 'Sandbox'
+      environment: config.environment === 'production' ? 'Production' : 'Sandbox',
+      ...response.data
     });
   } catch (error) {
     console.error('Error verifying Google Play purchase:', error);
